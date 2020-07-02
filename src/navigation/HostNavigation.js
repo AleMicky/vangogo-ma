@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { TABS } from '../consts/ConstsNavigation';
 import Card from '../components/Card';
@@ -122,7 +122,7 @@ function MessagesScreen() {
 }
 function ProfileScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, }}>
+    <ScrollView style={{ flex: 1, }}>
        <Appbar.Header style={{ backgroundColor: '#152727' }}>
        <Appbar.Content title="Profile" titleStyle={{alignSelf: 'center'}}  />
       </Appbar.Header>
@@ -146,29 +146,6 @@ function ProfileScreen({ navigation }) {
     </List.Section>
 
     <List.Section>
-      <List.Subheader>SUPPORT</List.Subheader>
-      <List.Item  title="How Vangogo works"
-                  right={props => <List.Icon {...props} icon="chevron-right" />}
-                  onPress={() => console.log(1)}
-                  />
-       <Divider />
-       <List.Item  title="List your van"
-                  right={props => <List.Icon {...props} icon="chevron-right" />}
-                  onPress={() => console.log(1)}
-                  />
-       <Divider />
-       <List.Item  title="Contact Support"
-                  right={props => <List.Icon {...props} icon="chevron-right" />}
-                  onPress={() => console.log(1)}
-                  />
-       <Divider />
-       <List.Item  title="Legal"
-                  right={props => <List.Icon {...props} icon="chevron-right" />}
-                  onPress={() => console.log(1)}
-                  />
-       <Divider />
-    </List.Section>
-    <List.Section>
       <Button mode="Text" 
               onPress={()  => navigation.navigate(TABS)}>
                 Switch to Root View
@@ -179,7 +156,7 @@ function ProfileScreen({ navigation }) {
                 Log out
         </Button>
     </List.Section>
-  </View>
+  </ScrollView>
   );
 }
 

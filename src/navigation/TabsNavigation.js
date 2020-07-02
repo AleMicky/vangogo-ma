@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text } from 'react-native';
+import { View, Text , ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { TABSS } from '../consts/ConstsNavigation';
 import TopTabNavigator from './TopTabNavigator';
@@ -36,7 +36,7 @@ function MessagesScreen() {
 }
 function ProfileScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, }}>
+    <ScrollView style={{ flex: 1, }}>
       <List.Section>
         <List.Subheader>ACCOUNT SETTINOS</List.Subheader>
         <List.Item  title="Contact Info"
@@ -55,30 +55,6 @@ function ProfileScreen({ navigation }) {
                     />
          <Divider />
       </List.Section>
-
-      <List.Section>
-        <List.Subheader>SUPPORT</List.Subheader>
-        <List.Item  title="How Vangogo works"
-                    right={props => <List.Icon {...props} icon="chevron-right" />}
-                    onPress={() => console.log(1)}
-                    />
-         <Divider />
-         <List.Item  title="List your van"
-                    right={props => <List.Icon {...props} icon="chevron-right" />}
-                    onPress={() => console.log(1)}
-                    />
-         <Divider />
-         <List.Item  title="Contact Support"
-                    right={props => <List.Icon {...props} icon="chevron-right" />}
-                    onPress={() => console.log(1)}
-                    />
-         <Divider />
-         <List.Item  title="Legal"
-                    right={props => <List.Icon {...props} icon="chevron-right" />}
-                    onPress={() => console.log(1)}
-                    />
-         <Divider />
-      </List.Section>
       <List.Section>
         <Button mode="Text" 
                 onPress={()  => navigation.navigate(TABSS)}>
@@ -90,7 +66,7 @@ function ProfileScreen({ navigation }) {
                   Log out
           </Button>
       </List.Section>
-    </View>
+    </ScrollView>
   );
 }
 
