@@ -4,17 +4,46 @@ import { View, Text, FlatList, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { TABS } from '../consts/ConstsNavigation';
 import Card from '../components/Card';
-import { List, Divider , Button, Appbar  } from 'react-native-paper';
+import { List, Divider, Button, Appbar, Card as Cards, Title, Paragraph,Drawer, Chip  } from 'react-native-paper';
 
 function DashboardScreen({ navigation }) {
   return (
-    <View style={{ flex: 1}}>
-      <Appbar.Header style={{backgroundColor: '#152727',}}>
-       <Appbar.Content title="Dashboard"  />
+    <View style={{ flex: 1 }}>
+      <Appbar.Header style={{ backgroundColor: '#152727', }}>
+        <Appbar.Content title="Dashboard" />
         <Appbar.Action icon="plus" onPress={() => navigation.navigate('MyModal')} />
       </Appbar.Header>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-           <Text>Dashboard...!</Text>
+      <View style={{ flex: 1, }}>
+
+        <View style={{flexDirection:'row',justifyContent:'center'}}>
+            <Cards style={{marginVertical:6,marginHorizontal:4}}>
+                <Cards.Content>
+                <Title>$456.546</Title>
+                <Paragraph>Eamings</Paragraph>
+              </Cards.Content>
+            </Cards>
+            <Cards style={{marginVertical:6,marginHorizontal:4}}>
+                <Cards.Content>
+                <Title>10</Title>
+                <Paragraph>Booking </Paragraph>
+              </Cards.Content>
+            </Cards>
+
+            <Cards style={{marginVertical:6,marginHorizontal:4}}>
+                <Cards.Content>
+                  <Text style={{fontSize:15,fontWeight:'bold',color:'gray',}}>Insights</Text>
+                </Cards.Content>
+            </Cards>
+        </View>
+        <Drawer.Item
+     style={{ backgroundColor: '#64ffda' }}
+     icon="star"
+     label="Booked trip by Monkey"
+   />
+
+
+
+        
       </View>
     </View>
   );
@@ -32,7 +61,7 @@ function VehiclesScreen() {
     {
       id: '2',
       vehiculo: 'Camper Van',
-      Marca:'Charlotte' ,
+      Marca: 'Charlotte',
       estado: 'Published',
       node: 'Approved for comp coverage',
       titulo: '2018 Ford Transit'
@@ -40,7 +69,7 @@ function VehiclesScreen() {
     {
       id: '3',
       vehiculo: 'Camper Van',
-      Marca:'Charlotte' ,
+      Marca: 'Charlotte',
       estado: 'Published',
       node: 'Approved for comp coverage',
       titulo: '2018 Ford Transit'
@@ -48,7 +77,7 @@ function VehiclesScreen() {
     {
       id: '4',
       vehiculo: 'Camper Van',
-      Marca:'Charlotte' ,
+      Marca: 'Charlotte',
       estado: 'Published',
       node: 'Approved for comp coverage',
       titulo: '2018 Ford Transit'
@@ -56,7 +85,7 @@ function VehiclesScreen() {
     {
       id: '5',
       vehiculo: 'Camper Van',
-      Marca:'Charlotte' ,
+      Marca: 'Charlotte',
       estado: 'Published',
       node: 'Approved for comp coverage',
       titulo: '2018 Ford Transit'
@@ -64,7 +93,7 @@ function VehiclesScreen() {
     {
       id: '6',
       vehiculo: 'Camper Van',
-      Marca:'Charlotte' ,
+      Marca: 'Charlotte',
       estado: 'Published',
       node: 'Approved for comp coverage',
       titulo: '2018 Ford Transit'
@@ -72,7 +101,7 @@ function VehiclesScreen() {
     {
       id: '7',
       vehiculo: 'Camper Van',
-      Marca:'Charlotte' ,
+      Marca: 'Charlotte',
       estado: 'Published',
       node: 'Approved for comp coverage',
       titulo: '2018 Ford Transit'
@@ -80,83 +109,83 @@ function VehiclesScreen() {
   ])
   return (
     <View style={{ flex: 1 }}>
-        <Appbar.Header style={{ backgroundColor: '#152727' }}>
-       <Appbar.Content title="Vehicles" titleStyle={{alignSelf: 'center'}}  />
+      <Appbar.Header style={{ backgroundColor: '#152727' }}>
+        <Appbar.Content title="Vehicles" titleStyle={{ alignSelf: 'center' }} />
       </Appbar.Header>
-         <FlatList style={{  flex: 1}}
-         data={vehiculos}
-         renderItem={({ item }) => (<Card item={item} />)}
-         keyExtractor={vehiculos => vehiculos.id}
-         
-         />
+      <FlatList style={{ flex: 1 }}
+        data={vehiculos}
+        renderItem={({ item }) => (<Card item={item} />)}
+        keyExtractor={vehiculos => vehiculos.id}
+
+      />
     </View>
   );
 }
 function BookingsScreen() {
   return (
 
-    <View style={{ flex: 1}}>
-    <Appbar.Header style={{backgroundColor: '#152727',}}>
-     <Appbar.Content title="Bookings"  titleStyle={{alignSelf: 'center'}}/>
-    </Appbar.Header>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-         <Text>Bookings...!</Text>
+    <View style={{ flex: 1 }}>
+      <Appbar.Header style={{ backgroundColor: '#152727', }}>
+        <Appbar.Content title="Bookings" titleStyle={{ alignSelf: 'center' }} />
+      </Appbar.Header>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Bookings...!</Text>
+      </View>
     </View>
-  </View>
-  
+
   );
 }
 function MessagesScreen() {
   return (
-    <View style={{ flex: 1}}>
-    <Appbar.Header style={{backgroundColor: '#152727',}}>
-     <Appbar.Content title="Messages"  titleStyle={{alignSelf: 'center'}}/>
-    </Appbar.Header>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-         <Text>Messages...!</Text>
+    <View style={{ flex: 1 }}>
+      <Appbar.Header style={{ backgroundColor: '#152727', }}>
+        <Appbar.Content title="Messages" titleStyle={{ alignSelf: 'center' }} />
+      </Appbar.Header>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Messages...!</Text>
+      </View>
     </View>
-  </View>
-    
-    
+
+
   );
 }
 function ProfileScreen({ navigation }) {
   return (
     <ScrollView style={{ flex: 1, }}>
-       <Appbar.Header style={{ backgroundColor: '#152727' }}>
-       <Appbar.Content title="Profile" titleStyle={{alignSelf: 'center'}}  />
+      <Appbar.Header style={{ backgroundColor: '#152727' }}>
+        <Appbar.Content title="Profile" titleStyle={{ alignSelf: 'center' }} />
       </Appbar.Header>
-    <List.Section>
-      <List.Subheader>ACCOUNT SETTINOS</List.Subheader>
-      <List.Item  title="Contact Info"
-                  right={props => <List.Icon {...props} icon="chevron-right" />}
-                  onPress={() => console.log(1)}
-                  />
-       <Divider />
-       <List.Item  title="Paymenet and Payouts"
-                  right={props => <List.Icon {...props} icon="chevron-right" />}
-                  onPress={() => console.log(1)}
-                  />
-       <Divider />
-       <List.Item  title="Notifications"
-                  right={props => <List.Icon {...props} icon="chevron-right" />}
-                  onPress={() => console.log(1)}
-                  />
-       <Divider />
-    </List.Section>
+      <List.Section>
+        <List.Subheader>ACCOUNT SETTINOS</List.Subheader>
+        <List.Item title="Contact Info"
+          right={props => <List.Icon {...props} icon="chevron-right" />}
+          onPress={() => console.log(1)}
+        />
+        <Divider />
+        <List.Item title="Paymenet and Payouts"
+          right={props => <List.Icon {...props} icon="chevron-right" />}
+          onPress={() => console.log(1)}
+        />
+        <Divider />
+        <List.Item title="Notifications"
+          right={props => <List.Icon {...props} icon="chevron-right" />}
+          onPress={() => console.log(1)}
+        />
+        <Divider />
+      </List.Section>
 
-    <List.Section>
-      <Button mode="Text" 
-              onPress={()  => navigation.navigate(TABS)}>
-                Switch to Root View
+      <List.Section>
+        <Button mode="Text"
+          onPress={() => navigation.navigate(TABS)}>
+          Switch to Root View
         </Button>
 
-        <Button mode="Text" 
-              onPress={() => console.log('Pressed')}>
-                Log out
+        <Button mode="Text"
+          onPress={() => console.log('Pressed')}>
+          Log out
         </Button>
-    </List.Section>
-  </ScrollView>
+      </List.Section>
+    </ScrollView>
   );
 }
 
@@ -164,7 +193,7 @@ const Tab = createBottomTabNavigator();
 const HostNavigation = () => {
   return (
 
-    <Tab.Navigator initialRouteName="Vehicles"
+    <Tab.Navigator initialRouteName="Dashboard"
       tabBarOptions={{
         activeTintColor: '#71C6C4',
         inactiveTintColor: "#fff",

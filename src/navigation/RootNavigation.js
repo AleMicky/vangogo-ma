@@ -6,16 +6,107 @@ import AuthNavigation from './AuthNavigation';
 import { AUTH, TABS, TABSS } from '../consts/ConstsNavigation';
 import TabsNavigation from './TabsNavigation';
 import HostNavigation from './HostNavigation';
-import { View, Text, Button } from 'react-native';
-
+import { View, Picker, Text } from 'react-native';
+import { Appbar } from 'react-native-paper';
+import  Button from '../components/Button'
 const MainStack = createStackNavigator();
 const RootStack = createStackNavigator();
 
 function ModalScreen({ navigation }) {
+
+  const [selectedValue, setSelectedValue] = React.useState("B");
+  const [manu, setManu] = React.useState("B");
+  const [modal, setModal] = React.useState("B");
+  const[year , setYear] = React.useState("2020");
+
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ fontSize: 30 }}>Tell us about your van</Text>
-      <Button onPress={() => navigation.goBack()} title="Dismiss" />
+    <View style={{ flex: 1,}}>
+      <Appbar.Header style={{ backgroundColor: '#152727', }}>
+      <Appbar.Action icon="close" size={15} onPress={() => navigation.goBack()} />
+         <Appbar.Content title="Tell us about your van"  titleStyle={{ alignSelf: 'flex-end' }}/>
+        </Appbar.Header>
+          <View style={{flex:1}}>
+              <View>
+              <Text style={{ fontWeight: 'bold',
+                              fontSize: 15,
+                              marginTop: 20}}>Vehicle type</Text>
+              <Picker
+                    selectedValue={selectedValue}
+                    style={{ height: 50, width: '100%' , backgroundColor:'#fff',
+                                                        borderBottomColor:"#e1e1e1",
+                                                        borderStyle:'solid',
+                                                        borderBottomWidth: 1,
+                                                        marginHorizontal:8,
+                                                        borderColor:'gray'
+                                                        }}
+                    onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                  >
+                    <Picker.Item label="Class B" value="B" />
+                    <Picker.Item label="Class A" value="A" />
+                  </Picker>
+              </View>
+              <View>
+              <Text style={{ fontWeight: 'bold',
+                              fontSize: 15,
+                              marginTop: 20}}>Manufacturer</Text>
+              <Picker
+                    selectedValue={manu}
+                    style={{ height: 50, width: '100%' , backgroundColor:'#fff',
+                                                        borderBottomColor:"#e1e1e1",
+                                                        borderStyle:'solid',
+                                                        borderBottomWidth: 1,
+                                                        marginHorizontal:8,
+                                                        borderColor:'gray'
+                                                        }}
+                    onValueChange={(itemValue, itemIndex) => setManu(itemValue)}
+                  >
+                    <Picker.Item label="B" value="B" />
+                    <Picker.Item label="A" value="A" />
+                  </Picker>
+              </View>
+              <View>
+              <Text style={{ fontWeight: 'bold',
+                              fontSize: 15,
+                              marginTop: 20}}>Modal</Text>
+              <Picker
+                    selectedValue={modal}
+                    style={{ height: 50, width: '100%' , backgroundColor:'#fff',
+                                                        borderBottomColor:"#e1e1e1",
+                                                        borderStyle:'solid',
+                                                        borderBottomWidth: 1,
+                                                        marginHorizontal:8,
+                                                        borderColor:'gray'
+                                                        }}
+                    onValueChange={(itemValue, itemIndex) => setModal(itemValue)}
+                  >
+                    <Picker.Item label="B" value="B" />
+                    <Picker.Item label="A" value="A" />
+                  </Picker>
+              </View>
+              <View>
+              <Text style={{ fontWeight: 'bold',
+                              fontSize: 15,
+                              marginTop: 20}}>Year</Text>
+              <Picker
+                    selectedValue={year}
+                    style={{ height: 50, width: '100%' , backgroundColor:'#fff',
+                                                        borderBottomColor:"#e1e1e1",
+                                                        borderStyle:'solid',
+                                                        borderBottomWidth: 1,
+                                                        marginHorizontal:8,
+                                                        borderColor:'gray'
+                                                        }}
+                    onValueChange={(itemValue, itemIndex) => setYear(itemValue)}
+                  >
+                    <Picker.Item label="2020" value="2020" />
+                    <Picker.Item label="2019" value="2019" />
+                  </Picker>
+              </View>
+              <View style={{marginVertical:20}}>
+              <Button titulo="Next"
+                navigation={{}}/>
+              </View>
+          </View>
     </View>
   );
 }
