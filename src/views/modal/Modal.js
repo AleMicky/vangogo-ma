@@ -35,7 +35,15 @@ const Modal = ({ navigation }) => {
     const buttonTextStyle = {
         color: '#393939',
     };
-
+    const progressStepsStyle = {
+        activeStepIconBorderColor: '#009D99',
+        activeLabelColor: '#009D99',
+        activeStepNumColor: 'white',
+        activeStepIconColor: '#009D99',
+        completedStepIconColor: 'gray',
+        completedProgressBarColor: '#009D99',
+        completedCheckColor: 'white'
+      };
     return (
         <View style={styles.container}>
             <ImageBackground
@@ -49,9 +57,10 @@ const Modal = ({ navigation }) => {
             </ImageBackground>
 
             <View style={{ flex: 1 }}>
-                <ProgressSteps>
+                <ProgressSteps {...progressStepsStyle}>
                     <ProgressStep label="Step one"     
-                                  nextBtnTextStyle={buttonTextStyle}>
+                                  nextBtnTextStyle={buttonTextStyle}
+                                 >
                         <View style={{  paddingHorizontal: 20,
                                         paddingVertical: 10, }}>
                             <View>

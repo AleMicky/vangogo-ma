@@ -8,8 +8,6 @@ const Profile = ({ navigation }) => {
 
     const { singOut, tabHost, tabHostOut } = React.useContext(AuthContext)
     const [host, setHost ] = React.useState(true)
-
-
     const swit = () => {
         if(host){
             setHost(!host)
