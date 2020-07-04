@@ -1,10 +1,9 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { TABS } from '../consts/ConstsNavigation';
 
-const Button = ({ titulo , navigation}) => {
+const Button = ({ titulo , singIn}) => {
     return (
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate(TABS)}>
+        <TouchableOpacity style={styles.button} onPress={() => singIn()}>
             <Text style={styles.tituleButton}>{titulo}</Text>
         </TouchableOpacity>
     );

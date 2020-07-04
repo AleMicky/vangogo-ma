@@ -1,198 +1,154 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text, FlatList, ScrollView } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { TABS } from '../consts/ConstsNavigation';
-import Card from '../components/Card';
-import { List, Divider, Button, Appbar, Card as Cards, Title, Paragraph,Drawer, Chip  } from 'react-native-paper';
-
-function DashboardScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1 }}>
-      <Appbar.Header style={{ backgroundColor: '#152727', }}>
-        <Appbar.Content title="Dashboard" />
-        <Appbar.Action icon="plus" onPress={() => navigation.navigate('MyModal')} />
-      </Appbar.Header>
-      <View style={{ flex: 1, }}>
-
-        <View style={{flexDirection:'row',justifyContent:'center'}}>
-            <Cards style={{marginVertical:6,marginHorizontal:4}}>
-                <Cards.Content>
-                <Title>$456.546</Title>
-                <Paragraph>Eamings</Paragraph>
-              </Cards.Content>
-            </Cards>
-            <Cards style={{marginVertical:6,marginHorizontal:4}}>
-                <Cards.Content>
-                <Title>10</Title>
-                <Paragraph>Booking </Paragraph>
-              </Cards.Content>
-            </Cards>
-
-            <Cards style={{marginVertical:6,marginHorizontal:4}}>
-                <Cards.Content>
-                  <Text style={{fontSize:15,fontWeight:'bold',color:'gray',}}>Insights</Text>
-                </Cards.Content>
-            </Cards>
-        </View>
-        <Drawer.Item
-     style={{ backgroundColor: '#64ffda' }}
-     icon="star"
-     label="Booked trip by Monkey"
-   />
+import { Appbar, Avatar } from 'react-native-paper';
+import { ImageBackground } from 'react-native';
 
 
-
-        
-      </View>
-    </View>
-  );
-}
-function VehiclesScreen() {
-  const [vehiculos, setVehiculos] = React.useState([
-    {
-      id: '1',
-      vehiculo: 'Camper Van',
-      Marca: 'Charlotte, NC',
-      estado: 'Published',
-      node: 'Approved for comp coverage',
-      titulo: '2019 Ford Establisment'
-    },
-    {
-      id: '2',
-      vehiculo: 'Camper Van',
-      Marca: 'Charlotte',
-      estado: 'Published',
-      node: 'Approved for comp coverage',
-      titulo: '2018 Ford Transit'
-    },
-    {
-      id: '3',
-      vehiculo: 'Camper Van',
-      Marca: 'Charlotte',
-      estado: 'Published',
-      node: 'Approved for comp coverage',
-      titulo: '2018 Ford Transit'
-    },
-    {
-      id: '4',
-      vehiculo: 'Camper Van',
-      Marca: 'Charlotte',
-      estado: 'Published',
-      node: 'Approved for comp coverage',
-      titulo: '2018 Ford Transit'
-    },
-    {
-      id: '5',
-      vehiculo: 'Camper Van',
-      Marca: 'Charlotte',
-      estado: 'Published',
-      node: 'Approved for comp coverage',
-      titulo: '2018 Ford Transit'
-    },
-    {
-      id: '6',
-      vehiculo: 'Camper Van',
-      Marca: 'Charlotte',
-      estado: 'Published',
-      node: 'Approved for comp coverage',
-      titulo: '2018 Ford Transit'
-    },
-    {
-      id: '7',
-      vehiculo: 'Camper Van',
-      Marca: 'Charlotte',
-      estado: 'Published',
-      node: 'Approved for comp coverage',
-      titulo: '2018 Ford Transit'
-    }
-  ])
-  return (
-    <View style={{ flex: 1 }}>
-      <Appbar.Header style={{ backgroundColor: '#152727' }}>
-        <Appbar.Content title="Vehicles" titleStyle={{ alignSelf: 'center' }} />
-      </Appbar.Header>
-      <FlatList style={{ flex: 1 }}
-        data={vehiculos}
-        renderItem={({ item }) => (<Card item={item} />)}
-        keyExtractor={vehiculos => vehiculos.id}
-
-      />
-    </View>
-  );
-}
-function BookingsScreen() {
-  return (
-
-    <View style={{ flex: 1 }}>
-      <Appbar.Header style={{ backgroundColor: '#152727', }}>
-        <Appbar.Content title="Bookings" titleStyle={{ alignSelf: 'center' }} />
-      </Appbar.Header>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Bookings...!</Text>
-      </View>
-    </View>
-
-  );
-}
-function MessagesScreen() {
-  return (
-    <View style={{ flex: 1 }}>
-      <Appbar.Header style={{ backgroundColor: '#152727', }}>
-        <Appbar.Content title="Messages" titleStyle={{ alignSelf: 'center' }} />
-      </Appbar.Header>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Messages...!</Text>
-      </View>
-    </View>
+import Dashboard from '../views/dashboard/Dashboard';
+import Vehicles from '../views/vehicles/Vehicles';
+import Bookings from '../views/bookings/Bookings';
+import Profile from '../views/profile/Profile';
+import ContactInfo from '../views/profile/contactInfo/ContactInfo';
+import Messages from '../views/messages/Messages';
+import Modal from '../views/modal/Modal';
 
 
-  );
-}
-function ProfileScreen({ navigation }) {
-  return (
-    <ScrollView style={{ flex: 1, }}>
-      <Appbar.Header style={{ backgroundColor: '#152727' }}>
-        <Appbar.Content title="Profile" titleStyle={{ alignSelf: 'center' }} />
-      </Appbar.Header>
-      <List.Section>
-        <List.Subheader>ACCOUNT SETTINOS</List.Subheader>
-        <List.Item title="Contact Info"
-          right={props => <List.Icon {...props} icon="chevron-right" />}
-          onPress={() => console.log(1)}
-        />
-        <Divider />
-        <List.Item title="Paymenet and Payouts"
-          right={props => <List.Icon {...props} icon="chevron-right" />}
-          onPress={() => console.log(1)}
-        />
-        <Divider />
-        <List.Item title="Notifications"
-          right={props => <List.Icon {...props} icon="chevron-right" />}
-          onPress={() => console.log(1)}
-        />
-        <Divider />
-      </List.Section>
+const StackDashboard = createStackNavigator();
 
-      <List.Section>
-        <Button mode="Text"
-          onPress={() => navigation.navigate(TABS)}>
-          Switch to Root View
-        </Button>
+const DashboardStack = () => (
+  <StackDashboard.Navigator headerMode="none"
+                            screenOptions={{ animationEnabled: false }}
+                            mode="modal">
+    <StackDashboard.Screen name="Dashboard" 
+                           component={Dashboard}/>
+   <StackDashboard.Screen name="Modal"
+                                component={Modal}
+                                options={{ animationEnabled: true }}
+                            />
+  </StackDashboard.Navigator>
+);
 
-        <Button mode="Text"
-          onPress={() => console.log('Pressed')}>
-          Log out
-        </Button>
-      </List.Section>
-    </ScrollView>
-  );
-}
+const StackVehicles = createStackNavigator();
+
+const VehiclesStack = () => (
+  <StackVehicles.Navigator>
+    <StackVehicles.Screen name="Vehicles" 
+                          component={Vehicles}
+                          options={({ route }) => {
+                            return { 
+                                    headerTitle: 'Vehicles',
+                                    headerLeft: null,
+                                    headerStyle: {
+                                        backgroundColor: '#152727',
+                                      },
+                                      headerTintColor: '#fff',
+                                      headerTitleStyle: {
+                                        fontWeight: 'bold',
+                                        alignSelf: 'center'
+                                      },
+                            };
+                          }} />
+  </StackVehicles.Navigator>
+);
+
+const StackBookings = createStackNavigator();
+
+const BookingsStack = () => (
+  <StackBookings.Navigator>
+    <StackBookings.Screen name="Bookings" 
+                          component={Bookings}
+                          options={({ route }) => {
+                            return { 
+                                    headerTitle: 'Vehicles',
+                                    headerLeft: null,
+                                    headerStyle: {
+                                        backgroundColor: '#152727',
+                                      },
+                                      headerTintColor: '#fff',
+                                      headerTitleStyle: {
+                                        fontWeight: 'bold',
+                                        alignSelf: 'center'
+                                      },
+                            };
+                          }}/>
+  </StackBookings.Navigator>
+);
+
+const StackMessages = createStackNavigator();
+
+const MessagesStack = () => (
+  <StackMessages.Navigator>
+    <StackMessages.Screen name='Messages' 
+                          component={Messages}
+                          options={({ route }) => {
+                            return { 
+                                    headerTitle: 'Messages',
+                                    headerLeft: null,
+                                    headerStyle: {
+                                        backgroundColor: '#152727',
+                                      },
+                                      headerTintColor: '#fff',
+                                      headerTitleStyle: {
+                                        fontWeight: 'bold',
+                                        alignSelf: 'center'
+                                      },
+                            };
+                          }}  />
+  </StackMessages.Navigator>
+
+);
+
+const StackProfile = createStackNavigator();
+
+const ProfileStack = ({ navigation }) => (
+  <StackProfile.Navigator
+    headerMode="screen"
+    screenOptions={{
+      header: ({ scene, previous, navigation }) => {
+        const { options } = scene.descriptor;
+        const title =
+          options.headerTitle !== undefined
+            ? options.headerTitle
+            : options.title !== undefined
+              ? options.title
+              : scene.route.name;
+        return (
+          <>
+            {title === 'Profile' ? (
+              <ImageBackground
+                source={require("../../assets/imagen/headerPerfil.jpg")}
+                style={{ width: '100%' }}>
+                <Appbar.Header style={{ backgroundColor: 'transparent', height: 100 }}>
+                  <Avatar.Image size={50}
+                    source={require("../../assets/imagen/avatar.jpg")} />
+                  <Appbar.Content title="Hyo Min"
+                    subtitle="View your profile" color="white" />
+                </Appbar.Header>
+              </ImageBackground>
+            ) : (
+                <Appbar.Header style={{ backgroundColor: '#fff', }}>
+                  <Appbar.BackAction onPress={navigation.goBack} />
+                  <Appbar.Content title="Title" />
+                </Appbar.Header>
+              )
+
+            }
+          </>
+        );
+      },
+    }}>
+    <StackProfile.Screen name='Profile' component={Profile} />
+    <StackProfile.Screen name='ContactInfo' component={ContactInfo} />
+  </StackProfile.Navigator>
+
+);
+
 
 const Tab = createBottomTabNavigator();
 const HostNavigation = () => {
   return (
-
     <Tab.Navigator initialRouteName="Dashboard"
       tabBarOptions={{
         activeTintColor: '#71C6C4',
@@ -201,23 +157,23 @@ const HostNavigation = () => {
         style: { backgroundColor: '#152727' },
       }}>
       <Tab.Screen name="Dashboard"
-        component={DashboardScreen}
+        component={DashboardStack}
         options={{
           tabBarLabel: 'Dashboard',
           tabBarIcon: ({ color }) => (
             <Icon name="dashboard" color={color} size={20} />
           ),
         }} />
-      <Tab.Screen name="Vehicles"
-        component={VehiclesScreen}
+     <Tab.Screen name="Vehicles"
+        component={VehiclesStack}
         options={{
           tabBarLabel: 'Vehicles',
           tabBarIcon: ({ color }) => (
             <Icon name="truck" color={color} size={20} />
           ),
         }} />
-      <Tab.Screen name="Bookings"
-        component={BookingsScreen}
+       <Tab.Screen name="Bookings"
+        component={BookingsStack}
         options={{
           tabBarLabel: 'Bookings',
           tabBarIcon: ({ color }) => (
@@ -225,7 +181,7 @@ const HostNavigation = () => {
           ),
         }} />
       <Tab.Screen name="Messages"
-        component={MessagesScreen}
+        component={MessagesStack}
         options={{
           tabBarLabel: 'Messages',
           tabBarIcon: ({ color }) => (
@@ -233,7 +189,7 @@ const HostNavigation = () => {
           ),
         }} />
       <Tab.Screen name="Profile"
-        component={ProfileScreen}
+        component={ProfileStack}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color }) => (

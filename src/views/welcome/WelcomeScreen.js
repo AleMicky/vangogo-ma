@@ -19,21 +19,19 @@ const WelcomeScreen = ({navigation}) => {
                 <View style={Styles.marcoButton}>
                     <TouchableOpacity
                         style={Styles.buttonSign}
-                        onPress={() => navigation.navigate(SIGNUP)}>
+                        onPress={() => navigation.push(SIGNUP)}>
                         <Text style={{ color:'#fff', fontWeight:'bold',fontSize: 16}}>Sign up</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={Styles.marcoButton}>
                     <TouchableOpacity
                         style={Styles.buttonLog}
-                        onPress={() => navigation.navigate(LOGIN)}>
+                        onPress={() => navigation.push(LOGIN)}>
                         <Text style={{ color:'#009D99', fontWeight:'bold',fontSize: 16}}>Log in</Text>
                     </TouchableOpacity>
                 </View>
-
             </View>
         </Background>
-
     );
 }
 

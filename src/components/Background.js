@@ -20,7 +20,9 @@ const Background = ({ children }) => {
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        width: "100%",
+        width: null,
+        height: null,
+        resizeMode: 'contain',
         backgroundColor: '#000000',
     },
     linearGradient:{

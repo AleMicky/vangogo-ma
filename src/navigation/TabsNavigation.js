@@ -1,74 +1,157 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text , ScrollView } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { TABSS } from '../consts/ConstsNavigation';
-import TopTabNavigator from './TopTabNavigator';
-import { List, Divider , Button  } from 'react-native-paper';
+import { Appbar, Avatar } from 'react-native-paper';
+import { ImageBackground } from 'react-native';
 
-function SearchScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Search...!</Text>
-    </View>
-  );
-}
-function Savedcreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Saved...!</Text>
-    </View>
-  );
-}
-function TripsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Trips...!</Text>
-    </View>
-  );
-}
-function MessagesScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Messages...!</Text>
-    </View>
-  );
-}
-function ProfileScreen({ navigation }) {
-  return (
-    <ScrollView style={{ flex: 1, }}>
-      <List.Section>
-        <List.Subheader>ACCOUNT SETTINOS</List.Subheader>
-        <List.Item  title="Contact Info"
-                    right={props => <List.Icon {...props} icon="chevron-right" />}
-                    onPress={() => console.log(1)}
-                    />
-         <Divider />
-         <List.Item  title="Paymenet and Payouts"
-                    right={props => <List.Icon {...props} icon="chevron-right" />}
-                    onPress={() => console.log(1)}
-                    />
-         <Divider />
-         <List.Item  title="Notifications"
-                    right={props => <List.Icon {...props} icon="chevron-right" />}
-                    onPress={() => console.log(1)}
-                    />
-         <Divider />
-      </List.Section>
-      <List.Section>
-        <Button mode="Text" 
-                onPress={()  => navigation.navigate(TABSS)}>
-                  Switch to Host View
-          </Button>
+import Saved from '../views/saved/Saved';
+import Messages from '../views/messages/Messages';
+import Profile from '../views/profile/Profile';
+import Search from '../views/search/Search';
+import ContactInfo from '../views/profile/contactInfo/ContactInfo';
+import TopTabNavigator from './TopTabNavigator'
 
-          <Button mode="Text" 
-                onPress={() => console.log('Pressed')}>
-                  Log out
-          </Button>
-      </List.Section>
-    </ScrollView>
-  );
-}
+
+const StackSearch = createStackNavigator();
+
+const SearchStack = () => (
+  <StackSearch.Navigator>
+    <StackSearch.Screen name='Search' 
+                        component={Search}
+                        options={({ route }) => {
+                          return { 
+                                  headerTitle: 'Search',
+                                  headerLeft: null,
+                                  headerStyle: {
+                                      backgroundColor: '#152727',
+                                    },
+                                    headerTintColor: '#fff',
+                                    headerTitleStyle: {
+                                      fontWeight: 'bold',
+                                      alignSelf: 'center'
+                                    },
+                          };
+                        }}  />
+  </StackSearch.Navigator>
+);
+const StackSaved = createStackNavigator();
+
+const SavedStack = () => (
+  <StackSaved.Navigator>
+    <StackSaved.Screen  name='Saved' 
+                        component={Saved}
+                        options={({ route }) => {
+                          return { 
+                                  headerTitle: 'Saved',
+                                  headerLeft: null,
+                                  headerStyle: {
+                                      backgroundColor: '#152727',
+                                    },
+                                    headerTintColor: '#fff',
+                                    headerTitleStyle: {
+                                      fontWeight: 'bold',
+                                      alignSelf: 'center'
+                                    },
+                          };
+                        }}  />
+  </StackSaved.Navigator>
+
+);
+const StackTrips = createStackNavigator();
+
+const TripsStack = () => (
+  <StackTrips.Navigator>
+    <StackTrips.Screen name='Trips' 
+                       component={TopTabNavigator}
+                       options={({ route }) => {
+                        const routeName = route.state ? route.state.routes[route.state.index].name
+                          : 'Trips';
+                        return { 
+                                headerTitle: 'Trips',
+                                headerLeft: null,
+                                headerStyle: {
+                                    backgroundColor: '#152727',
+                                  },
+                                  headerTintColor: '#fff',
+                                  headerTitleStyle: {
+                                    fontWeight: 'bold',
+                                    alignSelf: 'center'
+                                  },
+                        };
+                      }} />
+  </StackTrips.Navigator>
+
+);
+
+const StackMessages = createStackNavigator();
+
+const MessagesStack = () => (
+  <StackMessages.Navigator>
+    <StackMessages.Screen name='Messages' 
+                          component={Messages}
+                          options={({ route }) => {
+                            return { 
+                                    headerTitle: 'Messages',
+                                    headerLeft: null,
+                                    headerStyle: {
+                                        backgroundColor: '#152727',
+                                      },
+                                      headerTintColor: '#fff',
+                                      headerTitleStyle: {
+                                        fontWeight: 'bold',
+                                        alignSelf: 'center'
+                                      },
+                            };
+                          }}  />
+  </StackMessages.Navigator>
+
+);
+
+const StackProfile = createStackNavigator();
+
+const ProfileStack = ({ navigation }) => (
+  <StackProfile.Navigator
+    headerMode="screen"
+    screenOptions={{
+      header: ({ scene, previous, navigation }) => {
+        const { options } = scene.descriptor;
+        const title =
+          options.headerTitle !== undefined
+            ? options.headerTitle
+            : options.title !== undefined
+              ? options.title
+              : scene.route.name;
+        return (
+          <>
+            {title === 'Profile' ? (
+              <ImageBackground
+                source={require("../../assets/imagen/headerPerfil.jpg")}
+                style={{ width: '100%' }}>
+                <Appbar.Header style={{ backgroundColor: 'transparent', height: 100 }}>
+                  <Avatar.Image size={50}
+                    source={require("../../assets/imagen/avatar.jpg")} />
+                  <Appbar.Content title="Hyo Min"
+                    subtitle="View your profile" color="white" />
+                </Appbar.Header>
+              </ImageBackground>
+            ) : (
+                <Appbar.Header style={{ backgroundColor: '#fff', }}>
+                  <Appbar.BackAction onPress={navigation.goBack} />
+                  <Appbar.Content title="Title" />
+                </Appbar.Header>
+              )
+
+            }
+          </>
+        );
+      },
+    }}>
+    <StackProfile.Screen name='Profile' component={Profile} />
+    <StackProfile.Screen name='ContactInfo' component={ContactInfo} />
+  </StackProfile.Navigator>
+
+);
 
 const Tab = createBottomTabNavigator();
 const TabsNavigation = () => {
@@ -79,10 +162,12 @@ const TabsNavigation = () => {
         activeTintColor: '#71C6C4',
         inactiveTintColor: "#fff",
         labelStyle: { fontSize: 12, color: '#fff' },
-        style: { backgroundColor: '#152727' },
+        style: {
+          backgroundColor: '#152727'
+        }
       }}>
       <Tab.Screen name="Search"
-        component={SearchScreen}
+        component={SearchStack}
         options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({ color }) => (
@@ -90,7 +175,7 @@ const TabsNavigation = () => {
           ),
         }} />
       <Tab.Screen name="Saved"
-        component={Savedcreen}
+        component={SavedStack}
         options={{
           tabBarLabel: 'Saved',
           tabBarIcon: ({ color }) => (
@@ -98,7 +183,7 @@ const TabsNavigation = () => {
           ),
         }} />
       <Tab.Screen name="Trips"
-        component={TopTabNavigator}
+        component={TripsStack}
         options={{
           tabBarLabel: 'Trips',
           tabBarIcon: ({ color }) => (
@@ -106,7 +191,7 @@ const TabsNavigation = () => {
           ),
         }} />
       <Tab.Screen name="Messages"
-        component={MessagesScreen}
+        component={MessagesStack}
         options={{
           tabBarLabel: 'Messages',
           tabBarIcon: ({ color }) => (
@@ -114,14 +199,13 @@ const TabsNavigation = () => {
           ),
         }} />
       <Tab.Screen name="Profile"
-        component={ProfileScreen}
+        component={ProfileStack}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color }) => (
             <Icon name="user-circle-o" color={color} size={20} />
           ),
         }} />
-
     </Tab.Navigator>
 
   );
